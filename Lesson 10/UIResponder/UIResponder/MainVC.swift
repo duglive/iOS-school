@@ -16,7 +16,6 @@ class MainVC : UIViewController {
         
         setGradientView()
         setDonutView()
-        setCircleView()
     }
     
     func setGradientView() {
@@ -26,23 +25,17 @@ class MainVC : UIViewController {
     }
     
     func setDonutView() {
-        let donutView = UIImageView()
+        let donutView = DonutView()
         let image = UIImage(named: "donut")
         donutView.image = image
         donutView.contentMode = .scaleToFill
         view.addSubview(donutView)
         donutView.pinToCenter(to: view)
         donutView.setSize(height: 300, width: 300)
-    }
-    
-    func setCircleView() {
-        let circleView = CircleView(radius: 40)
-        view.addSubview(circleView)
-        circleView.pinToCenter(to: view)
-        circleView.setSize(height: 80, width: 80)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pushVC))
-        circleView.addGestureRecognizer(tapGesture)
+        donutView.addGestureRecognizer(tapGesture)
+        donutView.isUserInteractionEnabled = true
     }
     
     @objc func pushVC() {
